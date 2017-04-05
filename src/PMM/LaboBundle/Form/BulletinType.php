@@ -8,8 +8,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-class ExamenType extends AbstractType
+class BulletinType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -17,10 +19,19 @@ class ExamenType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date', DateTimeType::class)
-            ->add('name', TextType::class)
-            ->add('price', TextType::class)
-            ->add('description', TextType::class)
+            ->add('patient', EntityType::class, array(
+                'class' => 'PMMCoreBundle:Patient',
+                'choice_label' => 'name',
+                'multiple' => false,
+                'expanded' => false,
+            ))
+            ->add('examens', EntityType::class, array(
+                'class' => 'PMMLaboBundle:Examen',
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+            ))
+            ->add('amount', NumberType::class)
             ->add('submit', SubmitType::class);
     }
     
@@ -30,7 +41,7 @@ class ExamenType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PMM\LaboBundle\Entity\Examen'
+            'data_class' => 'PMM\LaboBundle\Entity\Bulletin'
         ));
     }
 
@@ -39,7 +50,7 @@ class ExamenType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'pmm_labobundle_examen';
+        return 'pmm_labobundle_bulletin';
     }
 
 

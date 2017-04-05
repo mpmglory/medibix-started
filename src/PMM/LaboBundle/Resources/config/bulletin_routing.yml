@@ -1,35 +1,35 @@
-pmm_labo_homepage:
+pmm_bulletin_homepage:
     path:     /
     defaults:
-        _controller: PMMLaboBundle:Examen:index
+        _controller: PMMLaboBundle:Bulletin:index
 
-pmm_examen_add:
+pmm_bulletin_add:
     path:     /add
     defaults:
-        _controller: PMMLaboBundle:Examen:add
+        _controller: PMMLaboBundle:Bulletin:add
 
-pmm_examen_view:
+pmm_bulletin_view:
     path:     /view/{id}
     defaults:
-        _controller: PMMLaboBundle:Examen:view
+        _controller: PMMLaboBundle:Bulletin:view
     requirements:
         id: \d+
 
-pmm_examen_edit:
+pmm_bulletin_edit:
     path:     /edit/{id}
     defaults:
-        _controller: PMMLaboBundle:Examen:edit
+        _controller: PMMLaboBundle:Bulletin:edit
     requirements:
         id: \d+
 
-pmm_examen_delete:
+pmm_bulletin_delete:
     path:     /delete/{id}
     defaults:
-        _controller: PMMLaboBundle:Examen:delete
+        _controller: PMMLaboBundle:Bulletin:delete
     requirements:
         id: \d+
         
-pmm_examen_viewAll:
+pmm_bulletin_viewAll:
     path:     /viewAll
     defaults:
-        _controller: PMMLaboBundle:Examen:viewAll
+        _controller: PMMLaboBundle:Bulletin:viewAll

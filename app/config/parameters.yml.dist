@@ -4,10 +4,10 @@
 parameters:
     parameters:
     database_host: 127.0.0.1
-    database_port: 5432
-    database_name: medibix
-    database_user: plata
-    database_password: plata
+    database_port: 
+    database_name: 
+    database_user: 
+    database_password: 
     
     secret: 2fc26cf8464ecf41ed006e82fc14b95f91be8f07
     # You should uncomment this if you want use pdo_sqlite

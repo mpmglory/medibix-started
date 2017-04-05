@@ -3,19 +3,19 @@
 {% extends "PMMCoreBundle::layout.html.twig" %}
 
 {% block title %}
-	Infos sur un examen - {{ parent() }}
+	Infos sur un bulletin - {{ parent() }}
 {% endblock %}
 
-{% block title2 %}Informations sur un examen{% endblock %}
+{% block title2 %}Informations sur un bulletin{% endblock %}
 
 {% block menu %}
 
 	<ul class="nav nav-pills nav-stacked">
         <a href="{{ path('pmm_labo_homepage') }}" class="btn btn-primary btn-primary">
             <span class="glyphicon glyphicon-chevron-left"></span> Retour à l'accueil </a><p>  </p>
-        <a href="{{ path('pmm_examen_viewAll') }}" class="btn btn-primary">
+        <a href="{{ path('pmm_bulletin_viewAll') }}" class="btn btn-primary">
 			<span class="glyphicon glyphicon-chevron-left"></span>
-			Afficher tous les examens
+			Afficher tous les bulletins
 		</a><p>  </p>
 	</ul>
 
@@ -24,17 +24,16 @@
 {% block body %}
 
 	<div class="well">
-        <h4>Nom: {{ exam.name }} </h4>
-        <b>Prix:</b> {{ exam.price }} </br><hr>
-        <b>Description:</b> {{ exam.description }} </br><hr>
+        <h4>Nom du patient: {{ bul.patient.name }} </h4>
+        <b>Montant total:</b> {{ bul.amount }} </br><hr>
     <p>
 
-        <a href="{{ path('pmm_examen_edit', {'id': exam.id}) }}" class="btn btn-warning">
+        <a href="{{ path('pmm_bulletin_edit', {'id': bul.id}) }}" class="btn btn-warning">
             <span class="glyphicon glyphicon-edit"></span>
             Modifier
         </a>
 
-        <a href="{{ path('pmm_examen_delete', {'id': exam.id}) }}" class="btn btn-danger">
+        <a href="{{ path('pmm_bulletin_delete', {'id': bul.id}) }}" class="btn btn-danger">
             <span class="glyphicon glyphicon-trash"></span>
             Supprimer
         </a>
