@@ -50,7 +50,9 @@ class PatientController extends Controller{
 			$request->getSession()->getFlashBag()
 					->add('notice', 'Patient bien enregistre.');
 		
-			return $this->redirectToRoute('pmm_patient_add');
+			 return $this->render('PMMCoreBundle:Patient:view.html.twig', array(
+                 'patient' => $patient
+        	));
 		}
 
         return $this->render('PMMCoreBundle:Patient:add.html.twig', array(

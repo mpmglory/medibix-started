@@ -3,15 +3,19 @@
 {% extends "PMMCoreBundle::layout.html.twig" %}
 
 {% block title %}
-	Modifier un examen - {{ parent() }}
+	Ajouter un bulletin - {{ parent() }}
 {% endblock %}
 
-{% block title2 %}Modification d'un examen{% endblock %}
+{% block title2 %}
+    Enregistrement d'un nouveau bulletin </hr>
+    Patient: {{ bul.patient.name }}
+
+{% endblock %}
 
 {% block menu %}
 
 	<ul class="nav nav-pills nav-stacked">
-        <a href="{{ path('pmm_labo_homepage') }}" class="btn btn-primary btn-block btn-lg">
+        <a href="{{ path('pmm_bulletin_homepage') }}" class="btn btn-primary btn-block btn-lg">
             <span class="glyphicon glyphicon-chevron-left"></span> Retour à l'accueil </a><p>  </p>
 	</ul>
 
@@ -19,6 +23,6 @@
 
 {% block body %}
 
-	{{ include("PMMLaboBundle:Examen:form.html.twig") }}
+    {{ include("PMMLaboBundle:Bulletin:custum-form.html.twig") }}
 	
 {% endblock %}

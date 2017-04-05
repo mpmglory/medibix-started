@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use PMM\LaboBundle\Form\BulletinType;
+use PMM\LaboBundle\Form\CustumBulletinType;
 use PMM\LaboBundle\Entity\Bulletin;
 
 class BulletinController extends Controller{
@@ -57,7 +58,36 @@ class BulletinController extends Controller{
         	'form' => $form->createView()
         	));
     }
+    
+    public function custumAddAction($id, Request $request){
 
+    	$bul = new Bulletin();
+        
+        $patient = $this->getDoctrine()->getManager()
+    				->getRepository('PMMCoreBundle:Patient')
+    				->find($id);
+        
+        $bul->setPatient($patient);
+
+    	$form = $this->createForm(CustumBulletinType::class, $bul);
+			
+		if($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
+
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($bul);
+			$em->flush();
+
+			$request->getSession()->getFlashBag()
+					->add('notice', 'Bulletin bien enregistré.');
+		
+			return $this->redirectToRoute('pmm_bulletin_add');
+		}
+
+        return $this->render('PMMLaboBundle:Bulletin:custum-add.html.twig', array(
+        	'form' => $form->createView(),
+            'bul' => $bul,
+        	));
+    }
 
     public function editAction($id, Request $request){
 

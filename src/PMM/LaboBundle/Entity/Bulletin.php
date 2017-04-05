@@ -3,12 +3,14 @@
 namespace PMM\LaboBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Bulletin
  *
  * @ORM\Table(name="bulletin")
  * @ORM\Entity(repositoryClass="PMM\LaboBundle\Repository\BulletinRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Bulletin
 {
@@ -50,7 +52,8 @@ class Bulletin
     public function __construct(){
         
         $this->date = new \Datetime();
-        $this->amout = 0;
+        $this->amount = 0;
+        $this->examens = new ArrayCollection();
     }
 
 
@@ -168,5 +171,21 @@ class Bulletin
     public function getExamens()
     {
         return $this->examens;
+    }
+    
+    /**
+    * @ORM\PrePersist
+    * @ORM\PreUpdate
+    */
+    public function calculAmount(){
+
+        $amt = 0;
+        
+        foreach($this->getExamens() as $exam){
+            
+            $amt += $exam->getPrice(); 
+        }
+        
+        $this->setAmount($amt);
     }
 }

@@ -11,11 +11,11 @@
 {% block menu %}
 
 	<ul class="nav nav-pills nav-stacked">
-        <a href="{{ path('pmm_core_homepage') }}" class="btn btn-primary btn-primary">
+        <a href="{{ path('pmm_patient_homepage') }}" class="btn btn-primary btn-block btn-lg">
             <span class="glyphicon glyphicon-chevron-left"></span> Retour à l'accueil </a><p>  </p>
-        <a href="{{ path('pmm_patient_viewAll') }}" class="btn btn-primary">
+        <a href="{{ path('pmm_patient_viewAll') }}" class="btn btn-primary btn-block btn-lg">
 			<span class="glyphicon glyphicon-chevron-left"></span>
-			Afficher tous les patients
+			Tous les patients
 		</a><p>  </p>
 	</ul>
 
@@ -40,12 +40,15 @@
         <b>Groupe sanguin:</b> {{ patient.bloodGroup }} <hr>
     <p>
 
-        <a href="{{ path('pmm_patient_edit', {'id': patient.id}) }}" class="btn btn-warning">
+        <a href="{{ path('pmm_bulletin_custum-add', {'id': patient.id}) }}" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-plus"></span> Créer un bulletin d'examen</a><p>  </p>
+        
+        <a href="{{ path('pmm_patient_edit', {'id': patient.id}) }}" class="btn btn-warning btn-lg">
             <span class="glyphicon glyphicon-edit"></span>
             Modifier
         </a>
 
-        <a href="{{ path('pmm_patient_delete', {'id': patient.id}) }}" class="btn btn-danger">
+        <a href="{{ path('pmm_patient_delete', {'id': patient.id}) }}" class="btn btn-danger btn-lg">
             <span class="glyphicon glyphicon-trash"></span>
             Supprimer
         </a>

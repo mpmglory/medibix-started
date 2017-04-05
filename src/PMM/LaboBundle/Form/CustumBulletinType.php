@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-class BulletinType extends AbstractType
+class CustumBulletinType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -19,18 +19,13 @@ class BulletinType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('patient', EntityType::class, array(
-                'class' => 'PMMCoreBundle:Patient',
-                'choice_label' => 'name',
-                'multiple' => false,
-                'expanded' => false,
-            ))
             ->add('examens', EntityType::class, array(
                 'class' => 'PMMLaboBundle:Examen',
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
             ))
+            ->add('amount', NumberType::class)
             ->add('submit', SubmitType::class);
     }
     

@@ -7,6 +7,13 @@ pmm_bulletin_add:
     path:     /add
     defaults:
         _controller: PMMLaboBundle:Bulletin:add
+        
+pmm_bulletin_custum-add:
+    path:     /custum-add/{id}
+    defaults:
+        _controller: PMMLaboBundle:Bulletin:custumAdd
+    requirements:
+        id: \d+
 
 pmm_bulletin_view:
     path:     /view/{id}
