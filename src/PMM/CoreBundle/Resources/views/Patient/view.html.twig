@@ -1,0 +1,56 @@
+{# (couche 3) #}
+
+{% extends "PMMCoreBundle::layout.html.twig" %}
+
+{% block title %}
+	Infos sur un patient - {{ parent() }}
+{% endblock %}
+
+{% block title2 %}Informations sur un patient{% endblock %}
+
+{% block menu %}
+
+	<ul class="nav nav-pills nav-stacked">
+        <a href="{{ path('pmm_core_homepage') }}" class="btn btn-primary btn-primary">
+            <span class="glyphicon glyphicon-chevron-left"></span> Retour à l'accueil </a><p>  </p>
+        <a href="{{ path('pmm_patient_viewAll') }}" class="btn btn-primary">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+			Afficher tous les patients
+		</a><p>  </p>
+	</ul>
+
+{% endblock %}
+
+{% block body %}
+
+	<div class="well">
+        <h4>Nom: {{ patient.name }} </h4>
+        <b>Nationalité:</b> {{ patient.nationality }} <hr>
+        <b>Sexe:</b> {{ patient.sex }} <hr>
+        <b>Téléphone:</b> {{ patient.telephone }} <hr>
+        <b>Date de naissance:</b> {{ patient.bornDate|date('d-m-Y') }} <hr>
+        <b>Lieu de naissance:</b> {{ patient.bornPlace }} <hr>
+        <b>Ethnie:</b> {{ patient.ethnicGroup }} <hr>
+        <b>Résidence:</b> {{ patient.residence }} <hr>
+        <b>Réligion:</b> {{ patient.religion }} <hr>
+        <b>Profession:</b> {{ patient.occupation }} <hr>
+        <b>Lieu de travail:</b> {{ patient.workPlace }} <hr>
+        <b>Adresse:</b> {{ patient.adress }} <hr>
+        <b>Personne à contacter:</b> {{ patient.personToContact }} <hr>
+        <b>Groupe sanguin:</b> {{ patient.bloodGroup }} <hr>
+    <p>
+
+        <a href="{{ path('pmm_patient_edit', {'id': patient.id}) }}" class="btn btn-warning">
+            <span class="glyphicon glyphicon-edit"></span>
+            Modifier
+        </a>
+
+        <a href="{{ path('pmm_patient_delete', {'id': patient.id}) }}" class="btn btn-danger">
+            <span class="glyphicon glyphicon-trash"></span>
+            Supprimer
+        </a>
+    </p>
+
+    </div>
+
+{% endblock %}

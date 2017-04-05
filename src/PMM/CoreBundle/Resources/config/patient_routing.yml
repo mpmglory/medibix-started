@@ -1,0 +1,35 @@
+pmm_patient_homepage:
+    path:     /
+    defaults:
+        _controller: PMMCoreBundle:Patient:index
+
+pmm_patient_add:
+    path:     /add
+    defaults:
+        _controller: PMMCoreBundle:Patient:add
+
+pmm_patient_view:
+    path:     /view/{id}
+    defaults:
+        _controller: PMMCoreBundle:Patient:view
+    requirements:
+        id: \d+
+
+pmm_patient_edit:
+    path:     /edit/{id}
+    defaults:
+        _controller: PMMCoreBundle:Patient:edit
+    requirements:
+        id: \d+
+
+pmm_patient_delete:
+    path:     /delete/{id}
+    defaults:
+        _controller: PMMCoreBundle:Patient:delete
+    requirements:
+        id: \d+
+        
+pmm_patient_viewAll:
+    path:     /viewAll
+    defaults:
+        _controller: PMMCoreBundle:Patient:viewAll
