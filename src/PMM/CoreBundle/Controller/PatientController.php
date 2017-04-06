@@ -48,7 +48,7 @@ class PatientController extends Controller{
 			$em->flush();
 
 			$request->getSession()->getFlashBag()
-					->add('notice', 'Patient bien enregistre.');
+					->add('notice', 'Patient bien enregistré.');
 		
 			 return $this->render('PMMCoreBundle:Patient:view.html.twig', array(
                  'patient' => $patient
@@ -67,7 +67,7 @@ class PatientController extends Controller{
         $patient  = $em->getRepository('PMMCoreBundle:Patient')->find($id);
         
         if(null === $patient){
-            throw new NotFoundException("L'Patient d'id " .$id. " n'existe pas.");
+            throw new NotFoundException("Le patient numéro " .$id. " n'existe pas.");
         }
 
     	$form = $this->get('form.factory')->create(PatientType::class, $patient);
@@ -77,14 +77,16 @@ class PatientController extends Controller{
 			$em->flush();
 
 			$request->getSession()->getFlashBag()
-					->add('notice', 'Modification reussie.');
+					->add('notice', 'Modification réussie.');
 		
-			return $this->redirectToRoute('pmm_patient_viewAll');
+			return $this->render('PMMCoreBundle:Patient:view.html.twig', array(
+        	       'patient' => $patient
+        	       ));
 		}
 
         return $this->render('PMMCoreBundle:Patient:edit.html.twig', array(
         	'form' => $form->createView()
-        	));
+        ));
     }
 
     public function deleteAction($id){
@@ -95,7 +97,7 @@ class PatientController extends Controller{
         $em->remove($patient);
         $em->flush();
 
-        return $this->redirectToRoute('pmm_core_homepage');
+        return $this->redirectToRoute('pmm_patient_homepage');
     }
     
     public function viewAllAction(){
@@ -105,7 +107,7 @@ class PatientController extends Controller{
                     ->findAll();
 
 
-        return $this->render('PMMCoreBundle:Patient:viewAll.html.twig', array(
+        return $this->render('PMMCoreBundle:Patient:view-all.html.twig', array(
             'listPatient' => $listPatient
             ));
     }

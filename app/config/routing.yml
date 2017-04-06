@@ -1,4 +1,4 @@
-pmm_core:
+pmm_patient:
     resource: "@PMMCoreBundle/Resources/config/patient_routing.yml"
     prefix:   /patient
 
@@ -9,3 +9,7 @@ pmm_examen:
 pmm_bulletin:
     resource: "@PMMLaboBundle/Resources/config/bulletin_routing.yml"
     prefix:   /bulletin
+    
+pmm_resultat:
+    resource: "@PMMLaboBundle/Resources/config/resultat_routing.yml"
+    prefix:   /resultat

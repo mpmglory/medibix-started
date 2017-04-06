@@ -1,0 +1,35 @@
+pmm_labo_homepage:
+    path:     /
+    defaults:
+        _controller: PMMLaboBundle:Resultat:index
+
+pmm_resultat_add:
+    path:     /add
+    defaults:
+        _controller: PMMLaboBundle:Resultat:add
+
+pmm_resultat_view:
+    path:     /view/{id}
+    defaults:
+        _controller: PMMLaboBundle:Resultat:view
+    requirements:
+        id: \d+
+
+pmm_resultat_edit:
+    path:     /edit/{id}
+    defaults:
+        _controller: PMMLaboBundle:Resultat:edit
+    requirements:
+        id: \d+
+
+pmm_resultat_delete:
+    path:     /delete/{id}
+    defaults:
+        _controller: PMMLaboBundle:Resultat:delete
+    requirements:
+        id: \d+
+        
+pmm_resultat_viewAll:
+    path:     /viewAll
+    defaults:
+        _controller: PMMLaboBundle:Resultat:viewAll

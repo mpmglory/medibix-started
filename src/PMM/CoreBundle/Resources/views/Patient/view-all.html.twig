@@ -21,30 +21,23 @@
 {% block body %}
     
     {% for patient in listPatient %}
-       	
+
         <div class="well">
             <h4>Nom: {{ patient.name }} </h4>
-            <b>Nationalité:</b> {{ patient.nationality }} <hr>
             <b>Sexe:</b> {{ patient.sex }} <hr>
             <b>Téléphone:</b> {{ patient.telephone }} <hr>
             <b>Date de naissance:</b> {{ patient.bornDate|date('d-m-Y') }} <hr>
-            <b>Lieu de naissance:</b> {{ patient.bornPlace }} <hr>
-            <b>Ethnie:</b> {{ patient.ethnicGroup }} <hr>
-            <b>Résidence:</b> {{ patient.residence }} <hr>
-            <b>Réligion:</b> {{ patient.religion }} <hr>
-            <b>Profession:</b> {{ patient.occupation }} <hr>
-            <b>Lieu de travail:</b> {{ patient.workPlace }} <hr>
-            <b>Adresse:</b> {{ patient.adress }} <hr>
-            <b>Personne à contacter:</b> {{ patient.personToContact }} <hr>
             <b>Groupe sanguin:</b> {{ patient.bloodGroup }} <hr>
         <p>
+            <a href="{{ path('pmm_bulletin_custum-add', {'id': patient.id}) }}" class="btn btn-info btn-lg">
+                <span class="glyphicon glyphicon-plus"></span> Créer un bulletin d'examen</a><p>  </p>
 
-            <a href="{{ path('pmm_patient_edit', {'id': patient.id}) }}" class="btn btn-warning">
+            <a href="{{ path('pmm_patient_edit', {'id': patient.id}) }}" class="btn btn-warning btn-lg">
                 <span class="glyphicon glyphicon-edit"></span>
                 Modifier
             </a>
 
-            <a href="{{ path('pmm_patient_delete', {'id': patient.id}) }}" class="btn btn-danger">
+            <a href="{{ path('pmm_patient_delete', {'id': patient.id}) }}" class="btn btn-danger btn-lg">
                 <span class="glyphicon glyphicon-trash"></span>
                 Supprimer
             </a>

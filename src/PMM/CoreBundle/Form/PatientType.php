@@ -20,28 +20,35 @@ class PatientType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('telephone', TextType::class)
-            ->add('nationality', TextType::class)
-            ->add('sex', ChoiceType::class, array(
-                'choices' => array(
-                    'M' => 'Masculin',
-                    'F' => 'Féminin',
-                ),
-            ))
             ->add('bornDate', DateType::class, array(
                 'widget' => 'choice',
                 'format' => 'dd-MM-yyyy'
                 )
             )
-            ->add('bornPlace', TextType::class)
-            ->add('ethnicGroup', TextType::class)
-            ->add('residence', TextType::class)
-            ->add('religion', TextType::class)
-            ->add('occupation', TextType::class)
-            ->add('workPlace', TextType::class)
-            ->add('adress', TextType::class)
-            ->add('personToContact', TextType::class)
-            ->add('bloodGroup', TextType::class)
+            ->add('sex', ChoiceType::class, array(
+                'choices' => array(
+                    'Masculin' => 'Masculin',
+                    'Féminin' => 'Féminin',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+            ))
+            ->add('telephone', TextType::class)
+            ->add('bloodGroup', ChoiceType::class, array(
+                'choices' => array(
+                    'A-' => 'A-',
+                    'A+' => 'A+',
+                    'B-' => 'B-',
+                    'B+' => 'B+',
+                    'AB-' => 'AB-',
+                    'AB+' => 'AB+',
+                    'O-' => 'O-',
+                    'O+' => 'O+',
+                ),
+                'expanded' => false,
+                'multiple' => false,
+                'placeholder' => 'Choisir le groupe sans du patient',
+            ))
             ->add('submit', SubmitType::class, array('label' => 'Valider'));
     }
     

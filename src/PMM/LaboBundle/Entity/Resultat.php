@@ -5,12 +5,12 @@ namespace PMM\LaboBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Examen
+ * Resultat
  *
- * @ORM\Table(name="examen")
- * @ORM\Entity(repositoryClass="PMM\LaboBundle\Repository\ExamenRepository")
+ * @ORM\Table(name="resultat")
+ * @ORM\Entity(repositoryClass="PMM\LaboBundle\Repository\ResultatRepository")
  */
-class Examen
+class Resultat
 {    
     
     /**
@@ -37,16 +37,16 @@ class Examen
     private $name;
 
     /**
-     * @var float
+     * @var string
      *
-     * @ORM\Column(name="price", type="float")
+     * @ORM\Column(name="value", type="text", nullable=true)
      */
-    private $price;
-
+    private $value;
+    
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
     
@@ -54,6 +54,5 @@ class Examen
         
         $this->date = new \Datetime();
     }
-    
-    
+ 
 }

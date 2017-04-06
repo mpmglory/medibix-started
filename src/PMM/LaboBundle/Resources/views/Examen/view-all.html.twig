@@ -1,0 +1,45 @@
+
+{# (couche 3) #}
+
+{% extends "PMMCoreBundle::layout.html.twig" %}
+
+{% block title %}
+	Infos sur les examens - {{ parent() }}
+{% endblock %}
+
+{% block title2 %}Informations sur tous les examens{% endblock %}
+
+{% block menu %}
+
+	<ul class="nav nav-pills nav-stacked">
+        <a href="{{ path('pmm_examen_homepage') }}" class="btn btn-primary btn-block btn-lg">
+            <span class="glyphicon glyphicon-chevron-left"></span> Retour à l'accueil </a><p>  </p>
+	</ul>
+
+{% endblock %}
+
+{% block body %}
+    
+    {% for exam in listExam %}
+        <div class="well">
+            <h4>Nom: {{ exam.name }} </h4>
+            <b>Prix:</b> {{ exam.price }} </br><hr>
+            <b>Description:</b> {{ exam.description }} </br><hr>
+        <p>
+
+            <a href="{{ path('pmm_examen_edit', {'id': exam.id}) }}" class="btn btn-warning">
+                <i class="glyphicon glyphicon-edit"></i>
+                Modifier
+            </a>
+
+            <a href="{{ path('pmm_examen_delete', {'id': exam.id}) }}" class="btn btn-danger">
+                <i class="glyphicon glyphicon-trash"></i>
+                Supprimer
+            </a>
+        </p>
+
+        </div>
+
+    {% endfor %}
+
+{% endblock %}

@@ -50,15 +50,19 @@ class Examen
      */
     private $description;
     
+    
+    
     public function __construct(){
         
         $this->date = new \Datetime();
     }
     
+    
+
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -116,7 +120,7 @@ class Examen
     /**
      * Set price
      *
-     * @param string $price
+     * @param float $price
      *
      * @return Examen
      */
@@ -130,7 +134,7 @@ class Examen
     /**
      * Get price
      *
-     * @return string
+     * @return float
      */
     public function getPrice()
     {
@@ -159,29 +163,5 @@ class Examen
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set bulletin
-     *
-     * @param \PMM\LaboBundle\Entity\Bulletin $bulletin
-     *
-     * @return Examen
-     */
-    public function setBulletin(\PMM\LaboBundle\Entity\Bulletin $bulletin)
-    {
-        $this->bulletin = $bulletin;
-
-        return $this;
-    }
-
-    /**
-     * Get bulletin
-     *
-     * @return \PMM\LaboBundle\Entity\Bulletin
-     */
-    public function getBulletin()
-    {
-        return $this->bulletin;
     }
 }

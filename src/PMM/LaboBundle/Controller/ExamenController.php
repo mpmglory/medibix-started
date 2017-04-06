@@ -77,7 +77,9 @@ class ExamenController extends Controller{
 			$request->getSession()->getFlashBag()
 					->add('notice', 'Modification reussie.');
 		
-			return $this->redirectToRoute('pmm_examen_viewAll');
+			return $this->render('PMMLaboBundle:Examen:view.html.twig', array(
+        	   'exam' => $exam
+        	));
 		}
 
         return $this->render('PMMLaboBundle:Examen:edit.html.twig', array(
@@ -93,7 +95,7 @@ class ExamenController extends Controller{
         $em->remove($exam);
         $em->flush();
 
-        return $this->redirectToRoute('pmm_labo_homepage');
+        return $this->redirectToRoute('pmm_examen_homepage');
     }
     
     public function viewAllAction(){
@@ -103,7 +105,7 @@ class ExamenController extends Controller{
                     ->findAll();
 
 
-        return $this->render('PMMLaboBundle:Examen:viewAll.html.twig', array(
+        return $this->render('PMMLaboBundle:Examen:view-all.html.twig', array(
             'listExam' => $listExam
             ));
     }

@@ -1,4 +1,4 @@
-pmm_labo_homepage:
+pmm_examen_homepage:
     path:     /
     defaults:
         _controller: PMMLaboBundle:Examen:index
@@ -29,7 +29,7 @@ pmm_examen_delete:
     requirements:
         id: \d+
         
-pmm_examen_viewAll:
-    path:     /viewAll
+pmm_examen_view-all:
+    path:     /view-all
     defaults:
         _controller: PMMLaboBundle:Examen:viewAll

@@ -29,7 +29,7 @@ pmm_patient_delete:
     requirements:
         id: \d+
         
-pmm_patient_viewAll:
-    path:     /viewAll
+pmm_patient_view-all:
+    path:     /view-all
     defaults:
         _controller: PMMCoreBundle:Patient:viewAll
