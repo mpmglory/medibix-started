@@ -10,9 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-class BulletinType extends AbstractType
+class BerType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -20,17 +19,24 @@ class BulletinType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('patient', EntityType::class, array(
-                'class' => 'PMMCoreBundle:Patient',
+            ->add('value', TextType::class, array('required' => false))
+            ->add('bulletin', EntityType::class, array(
+                'class' => 'PMMLaboBundle:Examen',
                 'choice_label' => 'name',
                 'multiple' => false,
                 'expanded' => false,
             ))
-            ->add('examens', EntityType::class, array(
+            ->add('examen', EntityType::class, array(
                 'class' => 'PMMLaboBundle:Examen',
                 'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
+                'multiple' => false,
+                'expanded' => false,
+            ))
+            ->add('resultat', EntityType::class, array(
+                'class' => 'PMMLaboBundle:Examen',
+                'choice_label' => 'name',
+                'multiple' => false,
+                'expanded' => false,
             ))
             ->add('submit', SubmitType::class, array('label' => 'Valider'));
     }
@@ -41,7 +47,7 @@ class BulletinType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PMM\LaboBundle\Entity\Bulletin'
+            'data_class' => 'PMM\LaboBundle\Entity\Ber'
         ));
     }
 
@@ -50,7 +56,7 @@ class BulletinType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'pmm_labobundle_bulletin';
+        return 'pmm_labobundle_ber';
     }
 
 

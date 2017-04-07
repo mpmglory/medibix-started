@@ -6,36 +6,36 @@
 	Accueil - {{ parent() }}
 {% endblock %}
 
-{% block title2 %}Gestion des examens médicaux{% endblock %}
+{% block title2 %}Gestion des résultats médicaux{% endblock %}
 
 {% block menu %}
 
 	<ul class="nav nav-pills nav-stacked">
 
-        <a href="{{ path('pmm_examen_add') }}" class="btn btn-info btn-block btn-lg">
-            <span class="glyphicon glyphicon-plus"></span> Ajouter un examen</a><p>  </p>
+        <a href="{{ path('pmm_resultat_add') }}" class="btn btn-info btn-block btn-lg">
+            <span class="glyphicon glyphicon-plus"></span> Ajouter un résultat</a><p>  </p>
         
-        <a href="{{ path('pmm_examen_viewAll') }}" class="btn btn-warning btn-block btn-lg">
-            <span class="glyphicon glyphicon-edit"></span> Modifier un examen</a><p>  </p>
+        <a href="{{ path('pmm_resultat_view-all') }}" class="btn btn-warning btn-block btn-lg">
+            <span class="glyphicon glyphicon-edit"></span> Modifier un résultat</a><p>  </p>
         
-        <a href="{{ path('pmm_examen_viewAll') }}" class="btn btn-danger btn-block btn-lg">
-            <span class="glyphicon glyphicon-remove"></span> Supprimer un examen</a>
+        <a href="{{ path('pmm_resultat_view-all') }}" class="btn btn-danger btn-block btn-lg">
+            <span class="glyphicon glyphicon-remove"></span> Supprimer un résultat</a>
         
 	</ul>
 
 {% endblock %}
 
 {% block body %}
-	<h3>Tous les examens</h3>
+	<h3>Tous les résultats</h3>
 	<ul>
-	{% for exam in listExam %}
+	{% for resul in listResul %}
 		<li>
-			<a href="{{ path('pmm_examen_view', {'id': exam.id}) }}">
-                {{ exam.name }} </br>
+			<a href="{{ path('pmm_resultat_view', {'id': resul.id}) }}">
+                {{ resul.name }} </br>
 			</a>
 		</li>
 	{% else %}
-		<li>Aucun examen trouvé dans la base de données</li>
+		<li>Aucun résultat trouvé dans la base de données</li>
 	{% endfor %}
 	</ul>
 	

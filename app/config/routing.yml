@@ -13,3 +13,7 @@ pmm_bulletin:
 pmm_resultat:
     resource: "@PMMLaboBundle/Resources/config/resultat_routing.yml"
     prefix:   /resultat
+    
+pmm_ber:
+    resource: "@PMMLaboBundle/Resources/config/ber_routing.yml"
+    prefix:   /ber

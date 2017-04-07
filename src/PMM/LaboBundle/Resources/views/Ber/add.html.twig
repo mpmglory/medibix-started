@@ -3,15 +3,15 @@
 {% extends "PMMCoreBundle::layout.html.twig" %}
 
 {% block title %}
-	Modifier un résultat - {{ parent() }}
+	Ajouter un bert - {{ parent() }}
 {% endblock %}
 
-{% block title2 %}Modification d'un résultat{% endblock %}
+{% block title2 %}Enregistrement d'un nouveau bert{% endblock %}
 
 {% block menu %}
 
 	<ul class="nav nav-pills nav-stacked">
-        <a href="{{ path('pmm_resultat_homepage') }}" class="btn btn-primary btn-block btn-lg">
+        <a href="{{ path('pmm_ber_homepage') }}" class="btn btn-primary btn-block btn-lg">
             <span class="glyphicon glyphicon-chevron-left"></span> Retour à l'accueil </a><p>  </p>
 	</ul>
 
@@ -19,6 +19,6 @@
 
 {% block body %}
 
-	{{ include("PMMLaboBundle:Resultat:form.html.twig") }}
+	{{ include("PMMLaboBundle:Ber:form.html.twig") }}
 	
 {% endblock %}

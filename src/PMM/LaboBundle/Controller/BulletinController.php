@@ -26,12 +26,12 @@ class BulletinController extends Controller{
 
    public function viewAction($id){
 
-    	$bul = $this->getDoctrine()->getManager()
+        $bul = $this->getDoctrine()->getManager()
     				->getRepository('PMMLaboBundle:Bulletin')
     				->find($id);
 
         return $this->render('PMMLaboBundle:Bulletin:view.html.twig', array(
-        	'bul' => $bul
+        	'bul' => $bul,
         	));
     }
 
@@ -51,7 +51,9 @@ class BulletinController extends Controller{
 			$request->getSession()->getFlashBag()
 					->add('notice', 'Bulletin bien enregistré.');
 		
-			return $this->redirectToRoute('pmm_bulletin_add');
+			return $this->render('PMMLaboBundle:Bulletin:view.html.twig', array(
+        	'bul' => $bul
+        	));
 		}
 
         return $this->render('PMMLaboBundle:Bulletin:add.html.twig', array(
@@ -78,7 +80,7 @@ class BulletinController extends Controller{
 			$em->flush();
 
 			$request->getSession()->getFlashBag()
-					->add('notice', 'Bulletin bien enregistré.');
+					->add('notice', 'Bulletin enregistré avec succès.');
 		
 			return $this->redirectToRoute('pmm_bulletin_add');
 		}
@@ -95,7 +97,7 @@ class BulletinController extends Controller{
         $bul  = $em->getRepository('PMMLaboBundle:Bulletin')->find($id);
         
         if(null === $bul){
-            throw new NotFoundException("L'Bulletin d'id " .$id. " n'existe pas.");
+            throw new NotFoundException("Le bulletin d'examen numéro " .$id. " n'existe pas.");
         }
 
     	$form = $this->get('form.factory')->create(BulletinType::class, $bul);
@@ -107,7 +109,7 @@ class BulletinController extends Controller{
 			$request->getSession()->getFlashBag()
 					->add('notice', 'Modification reussie.');
 		
-			return $this->redirectToRoute('pmm_bulletin_viewAll');
+			return $this->redirectToRoute('pmm_bulletin_view-all');
 		}
 
         return $this->render('PMMLaboBundle:Bulletin:edit.html.twig', array(
@@ -123,7 +125,7 @@ class BulletinController extends Controller{
         $em->remove($bul);
         $em->flush();
 
-        return $this->redirectToRoute('pmm_labo_homepage');
+        return $this->redirectToRoute('pmm_bulletin_homepage');
     }
     
     public function viewAllAction(){
@@ -133,7 +135,7 @@ class BulletinController extends Controller{
                     ->findAll();
 
 
-        return $this->render('PMMLaboBundle:Bulletin:viewAll.html.twig', array(
+        return $this->render('PMMLaboBundle:Bulletin:view-all.html.twig', array(
             'listBul' => $listBul
             ));
     }

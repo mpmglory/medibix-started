@@ -16,7 +16,12 @@ class Bulletin
 {
     
     /**
-     * @ORM\ManyToMany(targetEntity="PMM\LaboBundle\Entity\Examen", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="PMM\LaboBundle\Entity\Ber", mappedBy="bulletin")
+     */
+    private $bers;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="PMM\LaboBundle\Entity\Examen")
      */
     private $examens;
     
@@ -49,13 +54,33 @@ class Bulletin
      */
     private $amount;
     
+    
     public function __construct(){
         
         $this->date = new \Datetime();
         $this->amount = 0;
         $this->examens = new ArrayCollection();
+        $this->bers = new ArrayCollection();
     }
 
+
+    /**
+    * @ORM\PrePersist
+    * @ORM\PreUpdate
+    */
+    public function calculAmount(){
+
+        $amt = 0;
+        
+        foreach($this->getExamens() as $exam){
+            
+            $amt += $exam->getPrice(); 
+        }
+        
+        $this->setAmount($amt);
+    }
+    
+    
 
     /**
      * Get id
@@ -116,27 +141,37 @@ class Bulletin
     }
 
     /**
-     * Set patient
+     * Add ber
      *
-     * @param \PMM\CoreBundle\Entity\Patient $patient
+     * @param \PMM\LaboBundle\Entity\Ber $ber
      *
      * @return Bulletin
      */
-    public function setPatient(\PMM\CoreBundle\Entity\Patient $patient)
+    public function addBer(\PMM\LaboBundle\Entity\Ber $ber)
     {
-        $this->patient = $patient;
+        $this->bers[] = $ber;
 
         return $this;
     }
 
     /**
-     * Get patient
+     * Remove ber
      *
-     * @return \PMM\CoreBundle\Entity\Patient
+     * @param \PMM\LaboBundle\Entity\Ber $ber
      */
-    public function getPatient()
+    public function removeBer(\PMM\LaboBundle\Entity\Ber $ber)
     {
-        return $this->patient;
+        $this->bers->removeElement($ber);
+    }
+
+    /**
+     * Get bers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBers()
+    {
+        return $this->bers;
     }
 
     /**
@@ -172,20 +207,28 @@ class Bulletin
     {
         return $this->examens;
     }
-    
-    /**
-    * @ORM\PrePersist
-    * @ORM\PreUpdate
-    */
-    public function calculAmount(){
 
-        $amt = 0;
-        
-        foreach($this->getExamens() as $exam){
-            
-            $amt += $exam->getPrice(); 
-        }
-        
-        $this->setAmount($amt);
+    /**
+     * Set patient
+     *
+     * @param \PMM\CoreBundle\Entity\Patient $patient
+     *
+     * @return Bulletin
+     */
+    public function setPatient(\PMM\CoreBundle\Entity\Patient $patient)
+    {
+        $this->patient = $patient;
+
+        return $this;
+    }
+
+    /**
+     * Get patient
+     *
+     * @return \PMM\CoreBundle\Entity\Patient
+     */
+    public function getPatient()
+    {
+        return $this->patient;
     }
 }

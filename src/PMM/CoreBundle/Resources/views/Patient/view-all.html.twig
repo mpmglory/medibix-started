@@ -23,7 +23,7 @@
     {% for patient in listPatient %}
 
         <div class="well">
-            <h4>Nom: {{ patient.name }} </h4>
+            <h3>Nom: {{ patient.name }} </h3><hr>
             <b>Sexe:</b> {{ patient.sex }} <hr>
             <b>Téléphone:</b> {{ patient.telephone }} <hr>
             <b>Date de naissance:</b> {{ patient.bornDate|date('d-m-Y') }} <hr>

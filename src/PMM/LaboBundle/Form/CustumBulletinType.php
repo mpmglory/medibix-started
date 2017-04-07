@@ -25,8 +25,7 @@ class CustumBulletinType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
             ))
-            ->add('amount', NumberType::class)
-            ->add('submit', SubmitType::class);
+            ->add('submit', SubmitType::class, array('label' => 'Valider'));
     }
     
     /**

@@ -5,23 +5,29 @@ namespace PMM\LaboBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ExamenResultat
+ * Ber
  *
- * @ORM\Table(name="examen_resultat")
- * @ORM\Entity(repositoryClass="PMM\LaboBundle\Repository\ExamenResultatRepository")
+ * @ORM\Table(name="ber")
+ * @ORM\Entity(repositoryClass="PMM\LaboBundle\Repository\BerRepository")
  */
-class ExamenResultat
+class Ber
 {
     
     /**
-     * @ORM\ManyToOne(targetEntity="PMM\LaboBundle\Entity\Examen")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\ManyToOne(targetEntity="PMM\LaboBundle\Entity\Bulletin", inversedBy="bers")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $bulletin;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="PMM\LaboBundle\Entity\Examen", inversedBy="bers")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $examen;
     
     /**
-     * @ORM\ManyToOne(targetEntity="PMM\LaboBundle\Entity\Resultat")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\ManyToOne(targetEntity="PMM\LaboBundle\Entity\Resultat", inversedBy="bers")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $resultat;
     
@@ -55,6 +61,7 @@ class ExamenResultat
     }
     
 
+    
 
     /**
      * Get id
@@ -71,7 +78,7 @@ class ExamenResultat
      *
      * @param \DateTime $date
      *
-     * @return ExamenResultat
+     * @return Ber
      */
     public function setDate($date)
     {
@@ -95,7 +102,7 @@ class ExamenResultat
      *
      * @param string $value
      *
-     * @return ExamenResultat
+     * @return Ber
      */
     public function setValue($value)
     {
@@ -115,15 +122,43 @@ class ExamenResultat
     }
 
     /**
+     * Set bulletin
+     *
+     * @param \PMM\LaboBundle\Entity\Bulletin $bulletin
+     *
+     * @return Ber
+     */
+    public function setBulletin(\PMM\LaboBundle\Entity\Bulletin $bulletin)
+    {
+        $this->bulletin = $bulletin;
+        
+        $bulletin->addBer($this);
+
+        return $this;
+    }
+
+    /**
+     * Get bulletin
+     *
+     * @return \PMM\LaboBundle\Entity\Bulletin
+     */
+    public function getBulletin()
+    {
+        return $this->bulletin;
+    }
+
+    /**
      * Set examen
      *
      * @param \PMM\LaboBundle\Entity\Examen $examen
      *
-     * @return ExamenResultat
+     * @return Ber
      */
-    public function setExamen(\PMM\LaboBundle\Entity\Examen $examen = null)
+    public function setExamen(\PMM\LaboBundle\Entity\Examen $examen)
     {
         $this->examen = $examen;
+        
+        $bulletin->addBer($this);
 
         return $this;
     }
@@ -143,11 +178,13 @@ class ExamenResultat
      *
      * @param \PMM\LaboBundle\Entity\Resultat $resultat
      *
-     * @return ExamenResultat
+     * @return Ber
      */
-    public function setResultat(\PMM\LaboBundle\Entity\Resultat $resultat = null)
+    public function setResultat(\PMM\LaboBundle\Entity\Resultat $resultat)
     {
         $this->resultat = $resultat;
+        
+        $bulletin->addBer($this);
 
         return $this;
     }

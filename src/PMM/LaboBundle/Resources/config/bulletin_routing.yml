@@ -36,7 +36,7 @@ pmm_bulletin_delete:
     requirements:
         id: \d+
         
-pmm_bulletin_viewAll:
-    path:     /viewAll
+pmm_bulletin_view-all:
+    path:     /view-all
     defaults:
         _controller: PMMLaboBundle:Bulletin:viewAll

@@ -13,38 +13,38 @@ class ResultatController extends Controller{
     
     public function indexAction(){
 
-        $listResu = $this->getDoctrine()->getManager()
+        $listResul = $this->getDoctrine()->getManager()
                     ->getRepository('PMMLaboBundle:Resultat')
                     ->findAll();
 
 
         return $this->render('PMMLaboBundle:Resultat:index.html.twig', array(
-            'listResu' => $listResu
+            'listResul' => $listResul
             ));
     }
 
    public function viewAction($id){
 
-    	$resu = $this->getDoctrine()->getManager()
+    	$resul = $this->getDoctrine()->getManager()
     				->getRepository('PMMLaboBundle:Resultat')
     				->find($id);
 
         return $this->render('PMMLaboBundle:Resultat:view.html.twig', array(
-        	'resu' => $resu
+        	'resul' => $resul
         	));
     }
 
 
     public function addAction(Request $request){
 
-    	$resu = new Resultat();
+    	$resul = new Resultat();
 
-    	$form = $this->createForm(ResultatType::class, $resu);
+    	$form = $this->createForm(ResultatType::class, $resul);
 			
 		if($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
 
 			$em = $this->getDoctrine()->getManager();
-			$em->persist($resu);
+			$em->persist($resul);
 			$em->flush();
 
 			$request->getSession()->getFlashBag()
@@ -62,13 +62,13 @@ class ResultatController extends Controller{
     public function editAction($id, Request $request){
 
     	$em = $this->getDoctrine()->getManager();
-        $resu  = $em->getRepository('PMMLaboBundle:Resultat')->find($id);
+        $resul  = $em->getRepository('PMMLaboBundle:Resultat')->find($id);
         
-        if(null === $resu){
+        if(null === $resul){
             throw new NotFoundException("L'Resultat d'id " .$id. " n'existe pas.");
         }
 
-    	$form = $this->get('form.factory')->create(ResultatType::class, $resu);
+    	$form = $this->get('form.factory')->create(ResultatType::class, $resul);
 			
 		if($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
 
@@ -77,7 +77,7 @@ class ResultatController extends Controller{
 			$request->getSession()->getFlashBag()
 					->add('notice', 'Modification reussie.');
 		
-			return $this->redirectToRoute('pmm_resultat_viewAll');
+			return $this->redirectToRoute('pmm_resultat_view-all');
 		}
 
         return $this->render('PMMLaboBundle:Resultat:edit.html.twig', array(
@@ -88,23 +88,23 @@ class ResultatController extends Controller{
     public function deleteAction($id){
 
         $em = $this->getDoctrine()->getManager();
-        $resu  = $em->getRepository('PMMLaboBundle:Resultat')->find($id);
+        $resul  = $em->getRepository('PMMLaboBundle:Resultat')->find($id);
 
-        $em->remove($resu);
+        $em->remove($resul);
         $em->flush();
 
-        return $this->redirectToRoute('pmm_labo_homepage');
+        return $this->redirectToRoute('pmm_resultat_homepage');
     }
     
     public function viewAllAction(){
 
-        $listResu = $this->getDoctrine()->getManager()
+        $listResul = $this->getDoctrine()->getManager()
                     ->getRepository('PMMLaboBundle:Resultat')
                     ->findAll();
 
 
-        return $this->render('PMMLaboBundle:Resultat:viewAll.html.twig', array(
-            'listResu' => $listResu
+        return $this->render('PMMLaboBundle:Resultat:view-all.html.twig', array(
+            'listResul' => $listResul
             ));
     }
 

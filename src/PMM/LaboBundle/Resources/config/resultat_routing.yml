@@ -1,4 +1,4 @@
-pmm_labo_homepage:
+pmm_resultat_homepage:
     path:     /
     defaults:
         _controller: PMMLaboBundle:Resultat:index
@@ -29,7 +29,7 @@ pmm_resultat_delete:
     requirements:
         id: \d+
         
-pmm_resultat_viewAll:
+pmm_resultat_view-all:
     path:     /viewAll
     defaults:
         _controller: PMMLaboBundle:Resultat:viewAll

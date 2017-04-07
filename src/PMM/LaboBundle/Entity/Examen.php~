@@ -3,6 +3,7 @@
 namespace PMM\LaboBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Examen
@@ -12,6 +13,16 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Examen
 {    
+    
+    /**
+     * @ORM\OneToMany(targetEntity="PMM\LaboBundle\Entity\Ber", mappedBy="examen")
+     */
+    private $bers;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="PMM\LaboBundle\Entity\Ber", mappedBy="examen")
+     */
+    private $resultats;
     
     /**
      * @var int
@@ -42,18 +53,132 @@ class Examen
      * @ORM\Column(name="price", type="float")
      */
     private $price;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="text")
-     */
-    private $description;
+    
     
     public function __construct(){
         
         $this->date = new \Datetime();
+        $this->bers = new ArrayCollection();
+        $this->resultat = new ArrayCollection();
+    } 
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
-    
-    
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Examen
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Examen
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set price
+     *
+     * @param float $price
+     *
+     * @return Examen
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return float
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+
+    /**
+     * Add ber
+     *
+     * @param \PMM\LaboBundle\Entity\Ber $ber
+     *
+     * @return Examen
+     */
+    public function addBer(\PMM\LaboBundle\Entity\Ber $ber)
+    {
+        $this->bers[] = $ber;
+
+        return $this;
+    }
+
+    /**
+     * Remove ber
+     *
+     * @param \PMM\LaboBundle\Entity\Ber $ber
+     */
+    public function removeBer(\PMM\LaboBundle\Entity\Ber $ber)
+    {
+        $this->bers->removeElement($ber);
+    }
+
+    /**
+     * Get bers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBers()
+    {
+        return $this->bers;
+    }
+
+  
 }

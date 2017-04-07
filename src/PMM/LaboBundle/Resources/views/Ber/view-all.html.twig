@@ -3,32 +3,29 @@
 {% extends "PMMCoreBundle::layout.html.twig" %}
 
 {% block title %}
-	Infos sur un resultat - {{ parent() }}
+	Infos sur les resultats - {{ parent() }}
 {% endblock %}
 
-{% block title2 %}Informations sur un resultat{% endblock %}
+{% block title2 %}Informations sur tous les resultats{% endblock %}
 
 {% block menu %}
 
 	<ul class="nav nav-pills nav-stacked">
         <a href="{{ path('pmm_resultat_homepage') }}" class="btn btn-primary btn-block btn-lg">
             <span class="glyphicon glyphicon-chevron-left"></span> Retour à l'accueil </a><p>  </p>
-        <a href="{{ path('pmm_resultat_view-all') }}" class="btn btn-primary btn-block btn-lg">
-			<span class="glyphicon glyphicon-chevron-left"></span>
-			Afficher tous les resultats
-		</a><p>  </p>
 	</ul>
 
 {% endblock %}
 
 {% block body %}
-
-	<div class="well">
+    
+    {% for resul in listResul %}
+       
+    <div class="well">
         <h3>Nom: {{ resul.name }} </h3><hr>
-        <b>Valeur:</b> # </br><hr>
+        <b>Valeur :</b> # </br><hr>
         <b>Description:</b> {{ resul.description }} </br><hr>
     <p>
-
         <a href="{{ path('pmm_resultat_edit', {'id': resul.id}) }}" class="btn btn-warning">
             <span class="glyphicon glyphicon-edit"></span>
             Modifier
@@ -39,7 +36,8 @@
             Supprimer
         </a>
     </p>
-
     </div>
+
+    {% endfor %}
 
 {% endblock %}

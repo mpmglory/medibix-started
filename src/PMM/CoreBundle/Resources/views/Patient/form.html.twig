@@ -1,6 +1,7 @@
 
 
 <div class="well">
+ 
   {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
   {# Les erreurs générales du formulaire. #}
@@ -49,6 +50,8 @@
 
   {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
   {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary btn-info'}}) }}
-  {{ form_end(form) }}
+ 
     
+  {{ form_rest(form) }}
+  {{ form_end(form) }}
 </div>

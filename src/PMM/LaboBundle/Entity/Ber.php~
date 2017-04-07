@@ -5,22 +5,28 @@ namespace PMM\LaboBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ExamenResultat
+ * Ber
  *
  * @ORM\Table(name="examen_resultat")
- * @ORM\Entity(repositoryClass="PMM\LaboBundle\Repository\ExamenResultatRepository")
+ * @ORM\Entity(repositoryClass="PMM\LaboBundle\Repository\BerRepository")
  */
-class ExamenResultat
+class Ber
 {
     
     /**
-     * @ORM\ManyToOne(targetEntity="PMM\LaboBundle\Entity\Examen", inversedBy="examen_resultats")
+     * @ORM\ManyToOne(targetEntity="PMM\LaboBundle\Entity\Bulletin", inversedBy="bers")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $bulletin;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="PMM\LaboBundle\Entity\Examen", inversedBy="bers")
      * @ORM\JoinColumn(nullable=false)
      */
     private $examen;
     
     /**
-     * @ORM\ManyToOne(targetEntity="PMM\LaboBundle\Entity\Resultat", inversedBy="examen_resultats")
+     * @ORM\ManyToOne(targetEntity="PMM\LaboBundle\Entity\Resultat", inversedBy="bers")
      * @ORM\JoinColumn(nullable=false)
      */
     private $resultat;

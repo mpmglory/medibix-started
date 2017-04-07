@@ -3,18 +3,25 @@
 namespace PMM\LaboBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Bulletin
  *
  * @ORM\Table(name="bulletin")
  * @ORM\Entity(repositoryClass="PMM\LaboBundle\Repository\BulletinRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Bulletin
 {
     
     /**
-     * @ORM\ManyToMany(targetEntity="PMM\LaboBundle\Entity\Examen", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="PMM\LaboBundle\Entity\Ber", mappedBy="bulletin")
+     */
+    private $bers;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="PMM\LaboBundle\Entity\Examen")
      */
     private $examens;
     
@@ -47,92 +54,30 @@ class Bulletin
      */
     private $amount;
     
+    
     public function __construct(){
         
         $this->date = new \Datetime();
-        $this->amout = 0;
+        $this->amount = 0;
+        $this->examens = new ArrayCollection();
     }
 
 
     /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
+    * @ORM\PrePersist
+    * @ORM\PreUpdate
+    */
+    public function calculAmount(){
+
+        $amt = 0;
+        
+        foreach($this->getExamens() as $exam){
+            
+            $amt += $exam->getPrice(); 
+        }
+        
+        $this->setAmount($amt);
     }
-
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     *
-     * @return Bulletin
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
-
-    /**
-     * Set amount
-     *
-     * @param float $amount
-     *
-     * @return Bulletin
-     */
-    public function setAmount($amount)
-    {
-        $this->amount = $amount;
-
-        return $this;
-    }
-
-    /**
-     * Get amount
-     *
-     * @return float
-     */
-    public function getAmount()
-    {
-        return $this->amount;
-    }
-
-    /**
-     * Set patient
-     *
-     * @param \PMM\CoreBundle\Entity\Patient $patient
-     *
-     * @return Bulletin
-     */
-    public function setPatient(\PMM\CoreBundle\Entity\Patient $patient)
-    {
-        $this->patient = $patient;
-
-        return $this;
-    }
-
-    /**
-     * Get patient
-     *
-     * @return \PMM\CoreBundle\Entity\Patient
-     */
-    public function getPatient()
-    {
-        return $this->patient;
-    }
+    
+    
 }

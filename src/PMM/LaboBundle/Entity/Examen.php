@@ -3,6 +3,7 @@
 namespace PMM\LaboBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Examen
@@ -12,6 +13,16 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Examen
 {    
+    
+    /**
+     * @ORM\OneToMany(targetEntity="PMM\LaboBundle\Entity\Ber", mappedBy="examen")
+     */
+    private $bers;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="PMM\LaboBundle\Entity\Ber", mappedBy="examen")
+     */
+    private $resultats;
     
     /**
      * @var int
@@ -42,22 +53,15 @@ class Examen
      * @ORM\Column(name="price", type="float")
      */
     private $price;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="text")
-     */
-    private $description;
-    
     
     
     public function __construct(){
         
         $this->date = new \Datetime();
-    }
-    
-    
+        $this->bers = new ArrayCollection();
+        $this->resultat = new ArrayCollection();
+    } 
+
 
     /**
      * Get id
@@ -141,27 +145,74 @@ class Examen
         return $this->price;
     }
 
+
     /**
-     * Set description
+     * Add ber
      *
-     * @param string $description
+     * @param \PMM\LaboBundle\Entity\Ber $ber
      *
      * @return Examen
      */
-    public function setDescription($description)
+    public function addBer(\PMM\LaboBundle\Entity\Ber $ber)
     {
-        $this->description = $description;
+        $this->bers[] = $ber;
 
         return $this;
     }
 
     /**
-     * Get description
+     * Remove ber
      *
-     * @return string
+     * @param \PMM\LaboBundle\Entity\Ber $ber
      */
-    public function getDescription()
+    public function removeBer(\PMM\LaboBundle\Entity\Ber $ber)
     {
-        return $this->description;
+        $this->bers->removeElement($ber);
+    }
+
+    /**
+     * Get bers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBers()
+    {
+        return $this->bers;
+    }
+
+  
+
+    /**
+     * Add resultat
+     *
+     * @param \PMM\LaboBundle\Entity\Ber $resultat
+     *
+     * @return Examen
+     */
+    public function addResultat(\PMM\LaboBundle\Entity\Ber $resultat)
+    {
+        $this->resultats[] = $resultat;
+
+        return $this;
+    }
+
+    /**
+     * Remove resultat
+     *
+     * @param \PMM\LaboBundle\Entity\Ber $resultat
+     */
+    public function removeResultat(\PMM\LaboBundle\Entity\Ber $resultat)
+    {
+        $this->resultats->removeElement($resultat);
+    }
+
+    /**
+     * Get resultats
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getResultats()
+    {
+        return $this->resultats;
     }
 }

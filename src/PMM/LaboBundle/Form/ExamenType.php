@@ -7,7 +7,10 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class ExamenType extends AbstractType
 {
@@ -17,10 +20,8 @@ class ExamenType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date', DateTimeType::class)
             ->add('name', TextType::class)
             ->add('price', TextType::class)
-            ->add('description', TextType::class)
             ->add('submit', SubmitType::class, array('label' => 'Valider'));
     }
     
@@ -44,5 +45,3 @@ class ExamenType extends AbstractType
 
 
 }
-
-
