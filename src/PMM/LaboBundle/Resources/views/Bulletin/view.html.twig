@@ -36,7 +36,14 @@
             <tr class="danger">
                 <td class="col-md-3">Examens demandés</td>
                 <td class="col-md-6">
-                    <ul>{% for exam in bul.examens %}<li>{{ exam.name }}</li>{% endfor %}</ul>
+                    <ul>
+                        {% for exam in bul.examens %}
+                            <li>{{ exam.name }}</li>
+                            {% for resul in exam.resultats %}
+                                {{ resul.name }}</br>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
                 </td>
             </tr>
             <tr class="warning">

@@ -25,6 +25,9 @@
 
 	<div class="well">
         <h4>Nom: {{ exam.name }} </h4>
+        {% for resul in exam.resultats %}
+            - {{ resul.name }}</br>
+        {% endfor %}
         <b>Prix:</b> {{ exam.price }} </br><hr>
     <p>
 

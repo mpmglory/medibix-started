@@ -158,7 +158,7 @@ class Ber
     {
         $this->examen = $examen;
         
-        $bulletin->addBer($this);
+        $examen->addBer($this);
 
         return $this;
     }
@@ -184,7 +184,7 @@ class Ber
     {
         $this->resultat = $resultat;
         
-        $bulletin->addBer($this);
+        $resultat->addBer($this);
 
         return $this;
     }

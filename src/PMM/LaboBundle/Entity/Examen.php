@@ -20,7 +20,7 @@ class Examen
     private $bers;
     
     /**
-     * @ORM\OneToMany(targetEntity="PMM\LaboBundle\Entity\Ber", mappedBy="examen")
+     * @ORM\OneToMany(targetEntity="PMM\LaboBundle\Entity\Resultat", mappedBy="examen")
      */
     private $resultats;
     
