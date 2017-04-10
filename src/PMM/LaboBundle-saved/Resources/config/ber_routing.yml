@@ -1,0 +1,35 @@
+pmm_ber_homepage:
+    path:     /
+    defaults:
+        _controller: PMMLaboBundle:Ber:index
+
+pmm_ber_add:
+    path:     /add
+    defaults:
+        _controller: PMMLaboBundle:Ber:add
+
+pmm_ber_view:
+    path:     /view/{id}
+    defaults:
+        _controller: PMMLaboBundle:Ber:view
+    requirements:
+        id: \d+
+
+pmm_ber_edit:
+    path:     /edit/{id}
+    defaults:
+        _controller: PMMLaboBundle:Ber:edit
+    requirements:
+        id: \d+
+
+pmm_ber_delete:
+    path:     /delete/{id}
+    defaults:
+        _controller: PMMLaboBundle:ExamenBer:delete
+    requirements:
+        id: \d+
+        
+pmm_ber_view-all:
+    path:     /view-all
+    defaults:
+        _controller: PMMLaboBundle:Ber:viewAll

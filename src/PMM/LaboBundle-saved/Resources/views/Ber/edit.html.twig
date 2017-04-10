@@ -1,0 +1,24 @@
+{# (couche 3) #}
+
+{% extends "PMMCoreBundle::layout.html.twig" %}
+
+{% block title %}
+	Modifier un ber - {{ parent() }}
+{% endblock %}
+
+{% block title2 %}Modification d'un ber{% endblock %}
+
+{% block menu %}
+
+	<ul class="nav nav-pills nav-stacked">
+        <a href="{{ path('pmm_ber_homepage') }}" class="btn btn-primary btn-block btn-lg">
+            <span class="glyphicon glyphicon-chevron-left"></span> Retour à l'accueil </a><p>  </p>
+	</ul>
+
+{% endblock %}
+
+{% block body %}
+
+	{{ include("PMMLaboBundle:Ber:form.html.twig") }}
+	
+{% endblock %}

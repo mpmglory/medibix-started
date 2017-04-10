@@ -1,0 +1,59 @@
+<?php
+
+namespace PMM\LaboBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ExamenResultat
+ *
+ * @ORM\Table(name="examen_resultat")
+ * @ORM\Entity(repositoryClass="PMM\LaboBundle\Repository\ExamenResultatRepository")
+ */
+class ExamenResultat
+{
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="PMM\LaboBundle\Entity\Examen", inversedBy="examen_resultats")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $examen;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="PMM\LaboBundle\Entity\Resultat", inversedBy="examen_resultats")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $resultat;
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $date;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="value", type="text", nullable=true)
+     */
+    private $value;
+
+    
+    public function __construct(){
+        
+        $this->date = new \Datetime();
+    }
+    
+
+    
+}

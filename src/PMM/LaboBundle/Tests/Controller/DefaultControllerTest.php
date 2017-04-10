@@ -1,6 +1,6 @@
 <?php
 
-namespace PMM\ExamenBundle\Tests\Controller;
+namespace PMM\LaboBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

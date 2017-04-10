@@ -1,0 +1,45 @@
+{# (couche 3) #}
+
+{% extends "PMMCoreBundle::layout.html.twig" %}
+
+{% block title %}
+	Infos sur un ber - {{ parent() }}
+{% endblock %}
+
+{% block title2 %}Informations sur un ber{% endblock %}
+
+{% block menu %}
+
+	<ul class="nav nav-pills nav-stacked">
+        <a href="{{ path('pmm_ber_homepage') }}" class="btn btn-primary btn-block btn-lg">
+            <span class="glyphicon glyphicon-chevron-left"></span> Retour à l'accueil </a><p>  </p>
+        <a href="{{ path('pmm_ber_view-all') }}" class="btn btn-primary btn-block btn-lg">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+			Afficher tous les bers
+		</a><p>  </p>
+	</ul>
+
+{% endblock %}
+
+{% block body %}
+
+	<div class="well">
+        <h3>Bulletin: {{ ber.name }} </h3><hr>
+        <b>Examen:</b> # </br><hr>
+        <b>Resultat:</b> {{ ber.description }} </br><hr>
+    <p>
+
+        <a href="{{ path('pmm_ber_edit', {'id': ber.id}) }}" class="btn btn-warning">
+            <span class="glyphicon glyphicon-edit"></span>
+            Modifier
+        </a>
+
+        <a href="{{ path('pmm_ber_delete', {'id': ber.id}) }}" class="btn btn-danger">
+            <span class="glyphicon glyphicon-trash"></span>
+            Supprimer
+        </a>
+    </p>
+
+    </div>
+
+{% endblock %}

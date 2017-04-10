@@ -4,6 +4,8 @@ parameters:
 #    parameter_name: value
 
 services:
+    #pmm_labo.ber_creation:
+        #class: PMM\LaboBundle\BerCreation\BerCreation
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]

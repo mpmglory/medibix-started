@@ -1,0 +1,5 @@
+services:
+    pmm_labo.ber_creation:
+        class: PMM\LaaasboBundle\BerCreation\BerCreation
+        #tags:
+            #- { name: doctrine.event_listener, event: prePersist }

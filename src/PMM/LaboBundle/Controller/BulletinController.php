@@ -43,7 +43,10 @@ class BulletinController extends Controller{
     	$form = $this->createForm(BulletinType::class, $bul);
 			
 		if($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
-
+            
+            /*$ber_creation = $this->get('pmm_labo.ber_creation');
+            $ber_creation->create_ber();*/
+            
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($bul);
 			$em->flush();

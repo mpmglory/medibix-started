@@ -1,0 +1,44 @@
+
+{# (couche 3) #}
+
+{% extends "PMMCoreBundle::layout.html.twig" %}
+
+{% block title %}
+	Infos sur les bulletins - {{ parent() }}
+{% endblock %}
+
+{% block title2 %}Informations sur tous les bulletins{% endblock %}
+
+{% block menu %}
+
+	<ul class="nav nav-pills nav-stacked">
+        <a href="{{ path('pmm_bulletin_homepage') }}" class="btn btn-primary btn-block btn-lg">
+            <span class="glyphicon glyphicon-chevron-left"></span> Retour à l'accueil </a><p>  </p>
+	</ul>
+
+{% endblock %}
+
+{% block body %}
+    
+    {% for bul in listBul %}
+        <div class="well">
+            <h3>Nom du patient: {{ bul.patient.name }} </h3><hr>
+            <b>Montant total:</b> {{ bul.amount }} </br><hr>
+        <p>
+
+            <a href="{{ path('pmm_bulletin_edit', {'id': bul.id}) }}" class="btn btn-warning">
+                <i class="glyphicon glyphicon-edit"></i>
+                Modifier
+            </a>
+
+            <a href="{{ path('pmm_bulletin_delete', {'id': bul.id}) }}" class="btn btn-danger">
+                <i class="glyphicon glyphicon-trash"></i>
+                Supprimer
+            </a>
+        </p>
+
+        </div>
+
+    {% endfor %}
+
+{% endblock %}

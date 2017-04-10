@@ -1,0 +1,28 @@
+{# (couche 3) #}
+
+{% extends "PMMCoreBundle::layout.html.twig" %}
+
+{% block title %}
+	Ajouter un bulletin - {{ parent() }}
+{% endblock %}
+
+{% block title2 %}
+
+    Enregistrement d'un nouveau bulletin
+
+{% endblock %}
+
+{% block menu %}
+
+	<ul class="nav nav-pills nav-stacked">
+        <a href="{{ path('pmm_bulletin_homepage') }}" class="btn btn-primary btn-block btn-lg">
+            <span class="glyphicon glyphicon-chevron-left"></span> Retour à l'accueil </a><p>  </p>
+	</ul>
+
+{% endblock %}
+
+{% block body %}
+
+    {{ include("PMMLaboBundle:Bulletin:form.html.twig") }}
+
+{% endblock %}

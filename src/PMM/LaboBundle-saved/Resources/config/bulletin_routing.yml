@@ -1,0 +1,42 @@
+pmm_bulletin_homepage:
+    path:     /
+    defaults:
+        _controller: PMMLaboBundle:Bulletin:index
+
+pmm_bulletin_add:
+    path:     /add
+    defaults:
+        _controller: PMMLaboBundle:Bulletin:add
+        
+pmm_bulletin_custum-add:
+    path:     /custum-add/{id}
+    defaults:
+        _controller: PMMLaboBundle:Bulletin:custumAdd
+    requirements:
+        id: \d+
+
+pmm_bulletin_view:
+    path:     /view/{id}
+    defaults:
+        _controller: PMMLaboBundle:Bulletin:view
+    requirements:
+        id: \d+
+
+pmm_bulletin_edit:
+    path:     /edit/{id}
+    defaults:
+        _controller: PMMLaboBundle:Bulletin:edit
+    requirements:
+        id: \d+
+
+pmm_bulletin_delete:
+    path:     /delete/{id}
+    defaults:
+        _controller: PMMLaboBundle:Bulletin:delete
+    requirements:
+        id: \d+
+        
+pmm_bulletin_view-all:
+    path:     /view-all
+    defaults:
+        _controller: PMMLaboBundle:Bulletin:viewAll

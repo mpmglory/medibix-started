@@ -1,0 +1,35 @@
+pmm_examen_homepage:
+    path:     /
+    defaults:
+        _controller: PMMLaboBundle:Examen:index
+
+pmm_examen_add:
+    path:     /add
+    defaults:
+        _controller: PMMLaboBundle:Examen:add
+
+pmm_examen_view:
+    path:     /view/{id}
+    defaults:
+        _controller: PMMLaboBundle:Examen:view
+    requirements:
+        id: \d+
+
+pmm_examen_edit:
+    path:     /edit/{id}
+    defaults:
+        _controller: PMMLaboBundle:Examen:edit
+    requirements:
+        id: \d+
+
+pmm_examen_delete:
+    path:     /delete/{id}
+    defaults:
+        _controller: PMMLaboBundle:Examen:delete
+    requirements:
+        id: \d+
+        
+pmm_examen_view-all:
+    path:     /view-all
+    defaults:
+        _controller: PMMLaboBundle:Examen:viewAll
