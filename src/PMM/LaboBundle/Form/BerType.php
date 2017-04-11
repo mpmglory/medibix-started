@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class BerType extends AbstractType
 {
@@ -20,24 +21,6 @@ class BerType extends AbstractType
     {
         $builder
             ->add('value', TextType::class, array('required' => false))
-            ->add('bulletin', EntityType::class, array(
-                'class' => 'PMMLaboBundle:Examen',
-                'choice_label' => 'name',
-                'multiple' => false,
-                'expanded' => false,
-            ))
-            ->add('examen', EntityType::class, array(
-                'class' => 'PMMLaboBundle:Examen',
-                'choice_label' => 'name',
-                'multiple' => false,
-                'expanded' => false,
-            ))
-            ->add('resultat', EntityType::class, array(
-                'class' => 'PMMLaboBundle:Examen',
-                'choice_label' => 'name',
-                'multiple' => false,
-                'expanded' => false,
-            ))
             ->add('submit', SubmitType::class, array('label' => 'Valider'));
     }
     

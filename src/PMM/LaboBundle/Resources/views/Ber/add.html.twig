@@ -6,7 +6,11 @@
 	Ajouter un bert - {{ parent() }}
 {% endblock %}
 
-{% block title2 %}Enregistrement d'un nouveau bert{% endblock %}
+{% block title2 %}
+  * Remplissage resultats</br> *
+    Bulletin # {{ ber.bulletin.id }} </br>
+    Patient: {{ ber.bulletin.patient.name }} </br>
+{% endblock %}
 
 {% block menu %}
 

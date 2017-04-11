@@ -40,3 +40,10 @@ pmm_bulletin_view-all:
     path:     /view-all
     defaults:
         _controller: PMMLaboBundle:Bulletin:viewAll
+
+pmm_bulletin_fill:
+    path:     /fill/{id}
+    defaults:
+        _controller: PMMLaboBundle:Ber:edit
+    requirements:
+        id: \d+

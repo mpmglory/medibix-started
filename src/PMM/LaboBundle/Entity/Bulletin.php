@@ -17,7 +17,7 @@ class Bulletin
 {
     
     /**
-     * @ORM\OneToMany(targetEntity="PMM\LaboBundle\Entity\Ber", cascade={"persist"}, mappedBy="bulletin")
+     * @ORM\OneToMany(targetEntity="PMM\LaboBundle\Entity\Ber", mappedBy="bulletin")
      */
     private $bers;
     
