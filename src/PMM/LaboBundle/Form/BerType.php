@@ -20,6 +20,18 @@ class BerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('examen', EntityType::class, array(
+                'class' => 'PMMLaboBundle:Examen',
+                'choice_label' => 'name',
+                'multiple' => false,
+                'expanded' => false,
+            ))
+            ->add('resultat', EntityType::class, array(
+                'class' => 'PMMLaboBundle:Resultat',
+                'choice_label' => 'name',
+                'multiple' => false,
+                'expanded' => false,
+            ))
             ->add('value', TextType::class, array('required' => false))
             ->add('submit', SubmitType::class, array('label' => 'Valider'));
     }

@@ -11,7 +11,7 @@ use PMM\LaboBundle\Entity\Bulletin;
 use PMM\LaboBundle\Entity\Examen;
 use PMM\LaboBundle\Entity\Resultat;
 use PMM\LaboBundle\Entity\Ber;
-use PMM\LaboBundle\Form\TestBerType;
+use PMM\LaboBundle\Form\BerEditType;
 
 class BerController extends Controller{
     
@@ -55,7 +55,7 @@ class BerController extends Controller{
     	$em = $this->getDoctrine()->getManager();
         $ber  = $em->getRepository('PMMLaboBundle:Ber')->find($id);
         
-       $form = $this->createForm(BerType::class, $ber);
+       $form = $this->createForm(BerEditType::class, $ber);
 			
 		if($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
             

@@ -37,4 +37,67 @@ class BerCreation{
         }
     }
     
+    public function postUpdate(LifecycleEventArgs $args){
+        
+        $entity = $args->getObject();
+        $em = $args->getObjectManager();
+        
+        
+        if($entity instanceof Bulletin){
+            
+            $bers = $em->getRepository('PMMLaboBundle:Ber')->findBy(array(
+                'bulletin' => $entity
+            ));
+                    
+            foreach($bers as $ber2){
+                    
+                $em->remove($ber2);
+                $em->flush();
+                    
+            }
+            
+            foreach($entity->getExamens() as $exam){
+                
+                foreach($exam->getResultats() as $resul){
+
+                    $ber = new Ber();
+
+                    $ber->setBulletin($entity);
+                    $ber->setExamen($exam);
+                    $ber->setResultat($resul);
+                    
+                    $em->persist($ber);
+                    $em->flush();
+                }
+            }
+        }else{
+            
+            return;
+        }
+    }
+    
+    public function postRemove(LifecycleEventArgs $args){
+        
+        $entity = $args->getObject();
+        $em = $args->getObjectManager();
+        
+        
+        if($entity instanceof Bulletin){
+            
+            $bers = $em->getRepository('PMMLaboBundle:Ber')->findBy(array(
+                'bulletin' => $entity
+            ));
+                    
+            foreach($bers as $ber2){
+                    
+                $em->remove($ber2);
+                $em->flush();     
+            }
+            
+        }else{
+            
+            return;
+        }
+    }
+    
 }

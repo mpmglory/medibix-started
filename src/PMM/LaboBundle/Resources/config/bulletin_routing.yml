@@ -44,6 +44,13 @@ pmm_bulletin_view-all:
 pmm_bulletin_fill:
     path:     /fill/{id}
     defaults:
+        _controller: PMMLaboBundle:Bulletin:fill
+    requirements:
+        id: \d+
+
+pmm_bulletin_fill-test:
+    path:     /fill-test/{id}
+    defaults:
         _controller: PMMLaboBundle:Ber:edit
     requirements:
         id: \d+

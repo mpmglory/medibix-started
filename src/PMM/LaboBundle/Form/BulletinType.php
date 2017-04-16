@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class BulletinType extends AbstractType
 {
@@ -31,6 +32,11 @@ class BulletinType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
+            ))
+            ->add('bers', CollectionType::class, array(
+                'entry_type' => BerEditType::class,
+                'allow_add' => true,
+                'allow_delete' => true
             ))
             ->add('submit', SubmitType::class, array('label' => 'Valider'));
     }

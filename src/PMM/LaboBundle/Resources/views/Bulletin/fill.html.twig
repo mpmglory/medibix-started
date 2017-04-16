@@ -1,0 +1,203 @@
+{# (couche 3) #}
+
+{% extends "PMMCoreBundle::layout.html.twig" %}
+
+{% block title %}
+	Remplir bulletin - {{ parent() }}
+{% endblock %}
+
+{% block title2 %}Remplissage d'un bulletin{% endblock %}
+
+{% block menu %}
+
+	<ul class="nav nav-pills nav-stacked">
+        <a href="{{ path('pmm_bulletin_homepage') }}" class="btn btn-primary btn-primary">
+            <span class="glyphicon glyphicon-chevron-left"></span> Retour à l'accueil </a><p>  </p>
+	</ul>
+
+{% endblock %}
+
+{% block body %}
+
+<div id="contenu" class="well"></div>
+
+<div id="test" class="well">
+    
+    Bulletin numero {{ bul.id }} du patient {{ bul.patient.name }}</br>
+
+{% for ber in listBer %}
+
+    {{ ber.examen.name }} - {{ ber.resultat.name }} - {{ ber.value }}</br>
+
+{% endfor %}
+    
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+    
+    var BerJs = {
+        
+        init: function(bId, eId, rId, value) {
+            this.bId = bId;
+            this.eId = eId;
+            this.rId = rId;
+            this.value = value;
+        },
+        
+        decrire: function() {
+            
+            var des = "B=" +this.bId+ " E=" +this.eId+ " R=" +this.rId+ " Value=" +this.value;
+            
+            return des;
+        }
+    };    
+    
+    var contenu = document.getElementById("contenu");
+    
+    var pElt = document.createElement("p");
+    pElt.id = pElt;
+    
+    var formElt = document.createElement("form");
+    formElt.id = formElt;
+    
+    pElt.appendChild(formElt);
+    contenu.appendChild(pElt);
+    
+    var i = 0;
+    
+    var currentBer = Object.create(BerJs);
+    
+    var tabBers = [];
+    
+    var b=0, e=0, r=0, v=0;
+    
+    {% for exam in bul.examens %}
+        
+        var p4Elt = document.createElement("p");
+        p4Elt.id = p4Elt;
+        p4Elt.textContent = "{{ exam.name }}";
+        contenu.appendChild(p4Elt);
+        
+        var j = 0;
+     
+        {% for resul in exam.resultats %}
+        
+            var p2Elt = document.createElement("p");
+            p2Elt.id = "p2Elt";
+
+            var labelElt = document.createElement("label");
+            labelElt.id = labelElt;
+            labelElt.textContent = "{{ resul.name }}";
+
+            var inputElt = document.createElement("input");
+            inputElt.id = "input" +i+ "" +j;
+            inputElt.classList.add("saisie");
+
+            p2Elt.appendChild(labelElt);
+            p2Elt.appendChild(inputElt);
+
+            formElt.appendChild(p2Elt);
+            
+            j++;
+         
+            b = {{ bul.id }};
+            e = {{ exam.id }};
+            r = {{ resul.id }};
+         
+            currentBer.init(b, e, r, "0");
+         
+        {% endfor %}
+        
+        i++;
+        
+         tabBers.push(currentBer);
+         
+    {% endfor %}
+    
+    var p3Elt = document.createElement("p");
+    p3Elt.id = p3Elt;
+    
+    var buttonElt = document.createElement("button");
+    buttonElt.id = buttonElt;
+    buttonElt.setAttribute("type", "submit");
+    buttonElt.textContent = "Enregistrer";
+    
+    p3Elt.appendChild(buttonElt);
+    
+    formElt.appendChild(p3Elt);
+     
+
+     
+     buttonElt.addEventListener("click", function(e){
+         
+        e.preventDefault();
+         
+         tabBers.forEach( function(ber) {
+             
+             console.log(ber.decrire());
+         });
+         
+        for(var ii=0; ii<i; ii++){
+            
+            for(var jj=0; jj<j; jj++){
+                
+                var pp = document.createElement("p");
+                pp.textContent = document.getElementById("input" +ii+ "" +jj).value;
+                document.getElementById("test").appendChild(pp);
+            }
+        }
+     });
+    
+</script>
+
+<script>
+
+function ajaxGet(url, callback) {
+    var req = new XMLHttpRequest();
+    req.open("GET", url);
+    req.addEventListener("load", function () {
+        if (req.status >= 200 && req.status < 400) {
+            // Appelle la fonction callback en lui passant la réponse de la requête
+            callback(req.responseText);
+        } else {
+            console.error(req.status + " " + req.statusText + " " + url);
+        }
+    });
+    req.addEventListener("error", function () {
+        console.error("Erreur réseau avec l'URL " + url);
+    });
+    req.send(null);
+}
+
+// Le paramètre isJson permet d'indiquer si l'envoi concerne des données JSON
+function ajaxPost(url, data, callback, isJson) {
+    var req = new XMLHttpRequest();
+    req.open("POST", url);
+    req.addEventListener("load", function () {
+        if (req.status >= 200 && req.status < 400) {
+            // Appelle la fonction callback en lui passant la réponse de la requête
+            callback(req.responseText);
+        } else {
+            console.error(req.status + " " + req.statusText + " " + url);
+        }
+    });
+    req.addEventListener("error", function () {
+        console.error("Erreur réseau avec l'URL " + url);
+    });
+    if (isJson) {
+        // Définit le contenu de la requête comme étant du JSON
+        req.setRequestHeader("Content-Type", "application/json");
+        // Transforme la donnée du format JSON vers le format texte avant l'envoi
+        data = JSON.stringify(data);
+    }
+    req.send(data);
+}
+
+</script>
+            
+{% endblock %}
+
+
+

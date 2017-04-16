@@ -23,6 +23,7 @@ class BulletinController extends Controller{
     }
     
    public function viewAction($id){
+       
         $bul = $this->getDoctrine()->getManager()
     				->getRepository('PMMLaboBundle:Bulletin')
     				->find($id);
@@ -32,6 +33,7 @@ class BulletinController extends Controller{
     }
     
     public function addAction(Request $request){
+        
     	$bul = new Bulletin();
     	$form = $this->createForm(BulletinType::class, $bul);
 			
@@ -96,7 +98,8 @@ class BulletinController extends Controller{
 			return $this->redirectToRoute('pmm_bulletin_view-all');
 		}
         return $this->render('PMMLaboBundle:Bulletin:edit.html.twig', array(
-        	'form' => $form->createView()
+        	'form' => $form->createView(),
+            'bul' => $bul
         	));
     }
     
@@ -118,6 +121,24 @@ class BulletinController extends Controller{
             'listBul' => $listBul
             ));
     }
+    
+        public function fillAction($id){
+        
+            $em = $this->getDoctrine()->getManager();
+            
+            $bul = $em->getRepository('PMMLaboBundle:Bulletin')
+                        ->find($id);
+            
+            $listBer = $em->getRepository('PMMLaboBundle:Ber')
+                        ->findBy(array(
+                            'bulletin' => $bul
+                        ));
+            
+            return $this->render('PMMLaboBundle:Bulletin:fill.html.twig', array(
+                'listBer' => $listBer,
+                'bul' => $bul
+                ));
+        }
     
 }
 
